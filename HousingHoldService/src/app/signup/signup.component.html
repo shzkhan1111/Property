@@ -1,20 +1,56 @@
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY"></script>
 
-<form #form="ngForm" (ngSubmit)="onSubmit()" class="form-group mt-5 col-md-4 offset-sm-4" >
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required [(ngModel)]="user.username" class="form-control">
-  </div>
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required [(ngModel)]="user.password" class="form-control">
-  </div>
 
-  <div>
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh;">
+  <form #form="ngForm" (ngSubmit)="onSubmit()" class="form-group col-md-4" >
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required [(ngModel)]="user.username" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required [(ngModel)]="user.password" class="form-control">
+    </div>
 
-  </div>
-  <div class="d-flex justify-content-end">
-  <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+    <div class="form-group">
+      <label for="CNIC">CNIC:</label>
+      <input type="CNIC" id="CNIC" name="CNIC" required [(ngModel)]="user.CNIC" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <label for="Location">Nearest Location</label>
+      <select [(ngModel)]="user.LocationText" class="form-control">
+        <optgroup label="Karachi">
+          <option value="KHI,North Nazimabad">North Nazimabad</option>
+          <option value="KHI,Layari">Layari</option>
+        </optgroup>
+        <optgroup label="Lahore">
+        <option value="LHR,Town1">Town1</option>
+          <option value="LHR,Town2">Town2</option>
+        </optgroup>
+      </select>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Nearest Location</mat-label>
+      <mat-select [(ngModel)]="user.LocationText" [formControl]="locationControl">
+        <mat-optgroup label="Karachi">
+          <mat-option *ngFor="let location of karachiLocations" [value]="'KHI,' + location">
+            {{location}}
+          </mat-option>
+        </mat-optgroup>
+        <mat-optgroup label="Lahore">
+          <mat-option *ngFor="let location of lahoreLocations" [value]="'LHR,' + location">
+            {{location}}
+          </mat-option>
+        </mat-optgroup>
+      </mat-select>
+      <mat-select-search [formControl]="locationControl"></mat-select-search>
+    </mat-form-field>
+
+
+    <div class="d-flex justify-content-end">
+      <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+    </div>
+  </form>
 </div>
-
-
-</form>

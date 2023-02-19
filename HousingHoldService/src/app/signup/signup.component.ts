@@ -3,6 +3,7 @@ import { User } from '../models/user';
 
 import { makeStyles } from '@material-ui/core/styles';
 import { TreeView, TreeItem } from '@material-ui/lab';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -12,12 +13,14 @@ import { TreeView, TreeItem } from '@material-ui/lab';
 export class SignupComponent {
   title = 'HousingHoldService';
   user : User = new User();
-
-
+  locationControl = new FormControl();
+  karachiLocations = ['North Nazimabad', 'Layari'];
+  lahoreLocations = ['Town1', 'Town2'];
 
 
 
   onSubmit() : void{
     console.log(this.user)
+
   }
 }
